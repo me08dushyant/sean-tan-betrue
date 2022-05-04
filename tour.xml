@@ -83,6 +83,7 @@
 			<cube url="panos/pano1.tiles/pano_%s.jpg" />
 		</image>
 		<hotspot name="spot1" style="skin_hotspotstyle" ath="-52.321" atv="11.187" linkedscene="scene_pano4" />
+			<hotspot name="spot2" style="skin_hotspotstyle2" ath="52" atv="11.187"  />
 		
 
 	</scene>
