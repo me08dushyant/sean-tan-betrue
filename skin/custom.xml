@@ -1,0 +1,92 @@
+﻿<krpano onloaded="">
+
+<layer name="dustbinCon" type="container" keep="true" visible="false" width="800" height="550" align="center"    bgroundedge="20" bgcolor="0X00615b" bgalpha=".9"  >
+	
+	<layer name="line" type="container" width="100%" height="2" y="75" bgcolor="0Xffffff" bgalpha=".2" />
+	<layer name="closeBtn" url="images/close-cross.png" align="righttop" scale=".15" x="15" y="15" onclick="closeBin();" />
+	<layer name="title" url="images/title.png" align="lefttop" scale=".4" x="20" y="15" />
+	<layer  name="dusbinBtn1" url="images/dustbinBtn.png" crop="0|0|200|333" onovercrop="0|333|200|333" tag="glass" align="center" x="-250" y="20" scale=".8" onclick="ThrowGarbage();"/>
+	<layer  name="dusbinBtn2" url="images/dustbinBtn.png" crop="300|0|200|333" onovercrop="300|333|200|333" tag="plastic" align="center" x="0" y="20" scale=".8" onclick="ThrowGarbage();"/>
+	<layer  name="dusbinBtn3" url="images/dustbinBtn.png" crop="600|0|200|333" onovercrop="600|333|200|333" tag="food" align="center" x="250"  y="20" scale=".8" onclick="ThrowGarbage();" />
+	
+	<layer name="rightAnswer" url="images/rightIcon.png" align="center" y="-150" x="250" scale=".3" visible="false" />
+	<layer name="wrongAnswer" url="images/wrongIcon.png" align="center" y="-150" x="250" scale=".3" visible="false" />
+	<layer name="success" url="images/success.png" align="bottomleft" x="20" y="20" scale=".5" visible="false"/>
+
+</layer>
+
+<style name="contest" onclick="PickGarbage();" onloaded.addevent="if(pickedup,trace('false'),trace('true'));" />
+<action name="closeBin">
+set(layer[dustbinCon].visible,false);
+set(layer[dusbinBtn1].enabled,true);
+set(layer[dusbinBtn2].enabled,true);
+set(layer[dusbinBtn3].enabled,true);
+
+set(layer[rightAnswer].visible,false);
+set(layer[wrongAnswer].visible,false);
+set(layer[success].visible,false);
+</action>
+
+<action name="PickGarbage">
+set(layer[dustbinCon].visible,true);
+
+set(garbageTag,get(tag));
+set(garbage,get(name));
+
+
+
+</action>
+
+<action name="ThrowGarbage">
+
+set(binTag,get(tag));
+
+set(layer[rightAnswer].x,get(x));
+
+set(layer[wrongAnswer].x,get(x));
+
+if(garbageTag == binTag,
+set(layer[rightAnswer].visible,true);
+set(layer[wrongAnswer].visible,false);
+set(hotspot[get(garbage)].visible,false);
+set(hotspot[get(garbage)].pickedup,false);
+
+
+set(layer[dusbinBtn1].enabled,false);
+set(layer[dusbinBtn2].enabled,false);
+set(layer[dusbinBtn3].enabled,false);
+
+set(layer[success].visible,true);
+
+,
+set(layer[rightAnswer].visible,false);
+set(layer[wrongAnswer].visible,true);
+)
+</action>
+<action name="calc_pos_from_hfov_yaw_pitch_roll">
+  div(hfov,%1,57.295779);
+  div(yaw,%2,-57.295779);
+  div(pitch,%3,57.295779);
+  div(roll,%4,-57.295779);
+  mul(hfov,0.5);Math.tan(hfov);mul(width,hfov,1000);set(height,'prop');
+  Math.cos(ch,yaw);Math.sin(sh,yaw);
+  Math.cos(ca,pitch);Math.sin(sa,pitch);
+  Math.cos(cb,roll);Math.sin(sb,roll);
+  mul(m0,ca,ch);
+  mul(tmp,cb,sa);mul(tmp,ch);mul(tmp2,sb,sh);add(m3,tmp,tmp2);
+  mul(m4,cb,ca);
+  mul(tmp,cb,sa);mul(tmp,sh);mul(tmp2,sb,ch);sub(m5n,tmp,tmp2);mul(m5n,-1);
+  mul(tmp,sb,sa);mul(tmp,ch);mul(tmp2,cb,sh);sub(m6n,tmp,tmp2);mul(m6n,-1);
+  Math.atan2(yaw,m6n,m0);
+  Math.atan2(roll,m5n,m4);
+  Math.asin(pitch,m3);
+  mul(ath,yaw,57.295779);
+  mul(atv,pitch,57.295779);
+  mul(rotate,roll,57.295779);
+ 
+</action>
+
+
+
+
+</krpano>

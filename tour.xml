@@ -1,6 +1,7 @@
 ﻿<krpano version="1.20.11" title="Virtual Tour">
 
-	<include url="skin/vtourskin.xml" />
+	<include url="skin/vtourskin.xml" /> 
+	<include url="skin/custom.xml" />
 	<include url="toolbox/toolbox.xml" />
 	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
 	<skin_settings maps="false"
@@ -130,6 +131,11 @@
 		
 		<hotspot name="spot2" style="skin_hotspotstyle" ath="-177.054" atv="12.761" linkedscene="scene_pano3" />
 		<hotspot name="spot3" style="skin_hotspotstyle" ath="-87.836" atv="10.606" linkedscene="scene_pano4" />
+		<hotspot name="dbItem01" keep="false" url="skin/images/banan-peel.png"  tag="food" distorted="true" ath="30" atv="27" scale=".1" style="contest" onloaded="if(pickedup,trace('false'),trace('true'));" />
+		<hotspot name="dbItem02" keep="false" url="skin/images/bottle.png"  tag="plastic"  distorted="true" ath="-150" atv="20" scale=".1"   style="contest" />
+		<hotspot name="dbItem03" keep="false" url="skin/images/glass-bottle.png"  tag="glass"   distorted="true" ath="-106" atv="20" scale=".1"  style="contest" />
+		<hotspot name="dbItem04" keep="false" url="skin/images/glass-jar.png"  tag="glass"  distorted="true"  ath="170" atv="20" scale=".1"   style="contest" />
+		<hotspot name="dbItem05" keep="false" url="skin/images/plastic-bag.png"  tag="plastic"  distorted="true"  ath="-66" atv="20" scale=".1"  style="contest"  />
 
 	</scene>
 
